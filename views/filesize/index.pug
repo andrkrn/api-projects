@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Timestamp Microservice
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css')
+  body
+    section.section
+      .container
+        .content
+          h1.title Filesize metadata
+
+          form(action='/filesize', enctype='multipart/form-data', method='post')
+            input(type='file', name='file', required=true)
+            br
+            br
+            input.button.is-info(type='submit')

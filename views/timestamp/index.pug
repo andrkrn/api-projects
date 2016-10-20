@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title Timestamp Microservice
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css')
+    style.
+      body {
+      padding-top: 4em;
+      }
+  body
+    section.section
+      .container
+        .content
+          h1.title API Basejump: Timestamp Microservice
+          blockquote
+            | User stories:
+            ol
+              li
+                | I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016).
+              li
+                | If it does, it returns both the Unix timestamp and the natural language form of that date.
+              li
+                | If it does not contain a date or Unix timestamp, it returns null for those properties.
+          p.title.is-4 Example Usage
+          code
+            | https://andrkrn-timestamp.herokuapp.com/January 14, 2016
+          br
+          br
+          p.subtitle.is-5
+            | Valid date formats:
+          ol
+            li MMMM DD, YYYY
+            li MMMM-DD-YYYY
+            li DD MMMM YYYY
+            li DD MMMM, YYYY
+            li DD-MMMM-YYYY
