@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Url Shortener
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css')
+  body
+    section.section
+      .container
+        .content.text-center
+          h1.title URL Shortener
+          form(action='/shortener/shorten', enctype='multipart/form-data', method='post')
+            input.input(type='text', name='url', placeholder='Paste a link...', required=true)
+            br
+            br
+            input.button.is-info(type='submit')

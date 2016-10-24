@@ -1,10 +1,20 @@
 const express = require('express')
 const path = require('path')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 const timestamp = require('./routes/timestamp')
 const filesize = require('./routes/filesize')
+const shortener = require('./routes/shortener')
+
+const config = require('./config.js')
 
 const app = express()
+
+mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name)
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.set('port', process.env.PORT || 3000)
 
@@ -27,6 +37,7 @@ app.get('/whoami', function(req, res) {
 
 app.use('/timestamp', timestamp)
 app.use('/filesize', filesize)
+app.use('/shortener', shortener)
 
 app.listen(app.get('port'), function() {
   console.log(`Server ready on port: ${app.get('port')}`)
