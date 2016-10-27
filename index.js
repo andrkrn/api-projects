@@ -11,10 +11,11 @@ const config = require('./config.js')
 
 const app = express()
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name)
 
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
 
 app.set('port', process.env.PORT || 3000)
 
@@ -22,7 +23,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
 app.get('/', function(req, res) {
-  res.send('Something went wrong')
+  res.render('index')
 })
 
 app.get('/whoami', function(req, res) {

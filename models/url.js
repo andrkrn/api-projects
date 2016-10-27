@@ -1,16 +1,19 @@
 const mongoose = require('mongoose')
 const autoIncrement = require('mongoose-auto-increment')
 
+autoIncrement.initialize(mongoose.connection)
+
 const UrlSchema = new mongoose.Schema({
-  _id: { type: Number, index: true },
   long_url: String,
   slug: String,
   created_at: Date
 })
 
-autoIncrement.initialize(mongoose.connection)
+UrlSchema.plugin(autoIncrement.plugin, {
+  model: 'Url',
+  startAt: 10000
+})
 
-UrlSchema.plugin(autoIncrement.plugin, 'Url')
 const Url = mongoose.model('Url', UrlSchema)
 
 module.exports = Url

@@ -3,7 +3,7 @@ const multer = require('multer')
 
 const router = express.Router()
 const upload = multer({
-  dest: '../uploads/'
+  dest: './public/uploads'
 }).single('file')
 
 router.use(function(req, res, next) {

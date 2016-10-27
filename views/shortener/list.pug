@@ -1,0 +1,21 @@
+extends index.pug
+
+block content
+  section.section
+    .container
+      .content
+        table.table
+          thead
+            tr
+              th ID
+              th Long Url
+              th Short Url
+              th
+          tbody
+            each url in urls
+              tr
+                td= url._id
+                td= url.long_url
+                td
+                td
+                  a(href=`/shortener/delete/${url._id}`, class='button') Delete
