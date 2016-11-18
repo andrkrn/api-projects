@@ -19,7 +19,8 @@ router.get('/', function(req, res) {
 router.get('/list', function(req, res) {
   Url.find({}, function(err, urls) {
     res.render('shortener/list', {
-      urls: urls
+      urls: urls,
+      base62: Base62
     })
   })
 })
@@ -40,7 +41,7 @@ router.post('/shorten', function(req, res) {
   Url.findOne({long_url: long_url}, function(err, url) {
     if (url) {
       console.log('URL: ' + url)
-      let short_url = 'http://localhost:3000/shortener/' + url.slug
+      let short_url = 'http://localhost:3000/shortener/' + Base62.encode(url._id)
       res.send({'short_url': short_url})
     } else {
       let new_url = new Url({ long_url: long_url })
@@ -48,7 +49,7 @@ router.post('/shorten', function(req, res) {
       new_url.save(function(err) {
         if (err) { console.log(err) }
 
-        let short_url = 'http://localhost:3000/shortener/' + new_url.slug
+        let short_url = 'http://localhost:3000/shortener/' + Base62.encode(new_url._id)
         res.send({'short_url': short_url})
       })
     }

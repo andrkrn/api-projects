@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const timestamp = require('./routes/timestamp')
 const filesize = require('./routes/filesize')
 const shortener = require('./routes/shortener')
+const imagesearch = require('./routes/imagesearch')
 
 const config = require('./config.js')
 
@@ -39,6 +40,7 @@ app.get('/whoami', function(req, res) {
 app.use('/timestamp', timestamp)
 app.use('/filesize', filesize)
 app.use('/shortener', shortener)
+app.use('/imagesearch', imagesearch)
 
 app.listen(app.get('port'), function() {
   console.log(`Server ready on port: ${app.get('port')}`)

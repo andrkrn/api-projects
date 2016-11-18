@@ -17,5 +17,6 @@ block content
                 td= url._id
                 td= url.long_url
                 td
+                  a(href=`http://localhost:3000/shortener/${base62.encode(url._id)}`)= base62.encode(url._id)
                 td
                   a(href=`/shortener/delete/${url._id}`, class='button') Delete
