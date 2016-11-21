@@ -3,5 +3,5 @@ module.exports = {
     host: 'localhost',
     name: 'node_api_projects'
   },
-  bing_search_api: 'YOUR_BING_SEARCH_API_KEY'
+  bing_search_api: process.env.BING_SEARCH_API
 }
