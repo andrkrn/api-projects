@@ -16,8 +16,12 @@ router.use(function(req, res, next) {
 })
 
 router.get('/', function(req, res) {
-  res.send('Welcome to image route!')
+  res.render('imagesearch/index')
 })
+
+router.post('/', function(req, res) {
+  res.redirect(`http://localhost:3000/imagesearch/${req.body.query}`)
+});
 
 router.get('/latest', function(req, res) {
   History.find({}, null, {
@@ -27,7 +31,12 @@ router.get('/latest', function(req, res) {
     }
   }, function(err, docs) {
     if (err) return console.error(err);
-    res.json(docs)
+    res.json(docs.map(function(doc) {
+      return {
+        query: doc.query,
+        when: doc.created_at
+      }
+    }))
   });
 })
 
