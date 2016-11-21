@@ -12,6 +12,9 @@ const PER_PAGE = 10
 router.use(function(req, res, next) {
   console.log('API Route')
   console.log(req.method)
+  console.log(req.protocol)
+  console.log(req.get('host'))
+  console.log(req.originalUrl)
   next()
 })
 
@@ -20,7 +23,7 @@ router.get('/', function(req, res) {
 })
 
 router.post('/', function(req, res) {
-  res.redirect(`http://localhost:3000/imagesearch/${req.body.query}`)
+  res.redirect(`${req.protocol}://${req.get('host')}/imagesearch/${req.body.query}`)
 });
 
 router.get('/latest', function(req, res) {

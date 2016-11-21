@@ -41,7 +41,7 @@ router.post('/shorten', function(req, res) {
   Url.findOne({long_url: long_url}, function(err, url) {
     if (url) {
       console.log('URL: ' + url)
-      let short_url = 'http://localhost:3000/shortener/' + Base62.encode(url._id)
+      let short_url = `${req.protocol}://${req.get('host')}/shortener/${Base62.encode(url._id)}`
       res.send({'short_url': short_url})
     } else {
       let new_url = new Url({ long_url: long_url })
@@ -49,7 +49,7 @@ router.post('/shorten', function(req, res) {
       new_url.save(function(err) {
         if (err) { console.log(err) }
 
-        let short_url = 'http://localhost:3000/shortener/' + Base62.encode(new_url._id)
+        let short_url = `${req.protocol}://${req.get('host')}/shortener/${Base62.encode(new_url._id)}`
         res.send({'short_url': short_url})
       })
     }
