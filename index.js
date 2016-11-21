@@ -14,8 +14,13 @@ const config = require('./config.js')
 
 const app = express()
 
+var database_url = `mongodb://${config.db.host}/${config.db.name}`;
+if (process.env.NODE_ENV === 'production') {
+  database_url = process.env.MONGODB_URI;
+}
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name)
+mongoose.connect(database_url)
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
